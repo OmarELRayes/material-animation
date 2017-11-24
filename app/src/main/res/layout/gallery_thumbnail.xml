@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.materialanimation.util.SquareLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="2dp">
+
+    <ImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"/>
+    <TextView
+        android:id="@+id/etxtURL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true"/>
+</com.materialanimation.util.SquareLayout>
