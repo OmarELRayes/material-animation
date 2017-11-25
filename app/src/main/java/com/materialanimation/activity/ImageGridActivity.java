@@ -32,7 +32,7 @@ import java.util.ArrayList;
  */
 
 public class ImageGridActivity extends AppCompatActivity implements GalleryAdapter.ItemClickListener {
-    private static final String endpoint = "https://api.androidhive.info/json/glide.json";
+    private static final String endpoint = "http://iammitulsheth.000webhostapp.com/data.json";
     private ArrayList<Image> images;
     private ProgressDialog pDialog;
     private GalleryAdapter mAdapter;

@@ -12,11 +12,18 @@
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:alpha="0.2"/>
     <TextView
         android:id="@+id/etxtURL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:singleLine="true"
         android:padding="10dp"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"/>
 </com.materialanimation.util.SquareLayout>

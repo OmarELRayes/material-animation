@@ -61,7 +61,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.thumbnail);
         ViewCompat.setTransitionName(holder.thumbnail, image.getName());
-        holder.etxtURL.setText(image.getMedium());
+        holder.etxtURL.setText(image.getName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
