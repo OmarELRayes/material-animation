@@ -61,11 +61,12 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.thumbnail);
         ViewCompat.setTransitionName(holder.thumbnail, image.getName());
+        ViewCompat.setTransitionName(holder.etxtURL, image.getName()+image.getTimestamp());
         holder.etxtURL.setText(image.getName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClickListener.onItemClick(holder.getAdapterPosition(), image, holder.thumbnail);
+                onItemClickListener.onItemClick(holder.getAdapterPosition(), image, holder.thumbnail, holder.etxtURL);
             }
         });
     }
@@ -76,7 +77,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
     }
 
     public interface ItemClickListener {
-        void onItemClick(int pos, Image imageItem, ImageView shareImageView);
+        void onItemClick(int pos, Image imageItem, ImageView shareImageView, TextView mTextView);
     }
 
     /*public interface ClickListener {

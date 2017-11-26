@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,7 +12,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -39,6 +42,8 @@ public class ImageGridActivity extends AppCompatActivity implements GalleryAdapt
     private RecyclerView recyclerView;
     private static final String EXTRA_ANIMAL_ITEM = "image_url";
     private static final String EXTRA_ANIMAL_IMAGE_TRANSITION_NAME = "image_transition_name";
+    private static final String EXTRA_ANIMAL_IMAGE_TRANSITION_NAME2 = "image_transition_name2";
+    private static final String EXTRA__ITEM_NAME = "name";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,15 +132,21 @@ public class ImageGridActivity extends AppCompatActivity implements GalleryAdapt
     }
 
     @Override
-    public void onItemClick(int pos, Image imageItem, ImageView shareImageView) {
+    public void onItemClick(int pos, Image imageItem, ImageView shareImageView, TextView shareTextView) {
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(EXTRA_ANIMAL_ITEM, imageItem.getLarge());
+        intent.putExtra(EXTRA__ITEM_NAME, imageItem.getName());
         intent.putExtra(EXTRA_ANIMAL_IMAGE_TRANSITION_NAME, ViewCompat.getTransitionName(shareImageView));
+        intent.putExtra(EXTRA_ANIMAL_IMAGE_TRANSITION_NAME2, ViewCompat.getTransitionName(shareTextView));
 
-        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+        /*ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this,
                 shareImageView,
-                ViewCompat.getTransitionName(shareImageView));
+                ViewCompat.getTransitionName(shareImageView));*/
+        Pair<View, String> mPair1 = new Pair<View, String>(shareImageView, ViewCompat.getTransitionName(shareImageView));
+        Pair<View, String> mPair2 = new Pair<View, String>(shareImageView, ViewCompat.getTransitionName(shareImageView));
+
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, mPair1, mPair2);
 
         startActivity(intent, options.toBundle());
     }
