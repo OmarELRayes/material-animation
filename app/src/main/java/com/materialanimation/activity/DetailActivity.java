@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -26,15 +28,29 @@ import com.materialanimation.R;
 public class DetailActivity extends AppCompatActivity {
     private static final String EXTRA_ANIMAL_ITEM = "image_url";
     private static final String EXTRA_ANIMAL_IMAGE_TRANSITION_NAME = "image_transition_name";
+    private static final String EXTRA__ITEM_NAME = "name";
+    private static final String EXTRA_ANIMAL_IMAGE_TRANSITION_NAME2 = "image_transition_name2";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        transparentToolbar();
+
+        //transparentToolbar();
+
         supportPostponeEnterTransition();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle extras = getIntent().getExtras();
         String animalItem = extras.getString(EXTRA_ANIMAL_ITEM);
+        String name = extras.getString(EXTRA__ITEM_NAME);
+
+        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle(name);
+
 
         ImageView imageView = (ImageView) findViewById(R.id.animal_detail_image_view);
         TextView textView = (TextView) findViewById(R.id.animal_detail_text);
@@ -44,6 +60,8 @@ public class DetailActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             String imageTransitionName = extras.getString(EXTRA_ANIMAL_IMAGE_TRANSITION_NAME);
             imageView.setTransitionName(imageTransitionName);
+            String imageTransitionName2 = extras.getString(EXTRA_ANIMAL_IMAGE_TRANSITION_NAME2);
+            collapsingToolbar.setTransitionName(imageTransitionName2);
         }
         Glide.with(this).load(imageUrl)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)

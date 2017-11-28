@@ -1,22 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.materialanimation.util.SquareLayout
+<android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="2dp">
-
-    <ImageView
-        android:id="@+id/thumbnail"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="3dp"
+    android:elevation="3dp"
+    card_view:cardCornerRadius="4dp">
+    <com.materialanimation.util.SquareLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"/>
-    <TextView
-        android:id="@+id/etxtURL"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:padding="10dp"
-        android:layout_alignParentBottom="true"/>
-</com.materialanimation.util.SquareLayout>
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+            android:alpha="0.2"/>
+        <TextView
+            android:id="@+id/etxtURL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:padding="10dp"
+            android:layout_alignParentBottom="true"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"/>
+    </com.materialanimation.util.SquareLayout>
+</android.support.v7.widget.CardView>
