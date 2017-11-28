@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Fade;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -43,6 +44,16 @@ public class DetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Fade fade = new Fade();
+            fade.excludeTarget(R.id.appBar, true);
+            fade.excludeTarget(android.R.id.statusBarBackground, true);
+            fade.excludeTarget(android.R.id.navigationBarBackground, true);
+
+            getWindow().setEnterTransition(fade);
+            getWindow().setExitTransition(fade);
+        }
 
         Bundle extras = getIntent().getExtras();
         String animalItem = extras.getString(EXTRA_ANIMAL_ITEM);
@@ -117,5 +128,16 @@ public class DetailActivity extends AppCompatActivity {
             winParams.flags &= ~bits;
         }
         win.setAttributes(winParams);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        super.onBackPressed();
+        return true;
     }
 }

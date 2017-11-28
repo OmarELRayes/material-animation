@@ -2,6 +2,7 @@ package com.materialanimation.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
@@ -11,6 +12,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.transition.Fade;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,7 +37,7 @@ import java.util.ArrayList;
  */
 
 public class ImageGridActivity extends AppCompatActivity implements GalleryAdapter.ItemClickListener {
-    private static final String endpoint = "http://iammitulsheth.000webhostapp.com/data.json";
+    private static final String endpoint = "https://api.myjson.com/bins/14r4sr";
     private ArrayList<Image> images;
     private ProgressDialog pDialog;
     private GalleryAdapter mAdapter;
@@ -53,9 +55,18 @@ public class ImageGridActivity extends AppCompatActivity implements GalleryAdapt
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Fade fade = new Fade();
+            fade.excludeTarget(R.id.appBar, true);
+            fade.excludeTarget(android.R.id.statusBarBackground, true);
+            fade.excludeTarget(android.R.id.navigationBarBackground, true);
+
+            getWindow().setEnterTransition(fade);
+            getWindow().setExitTransition(fade);
+        }
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        pDialog = new ProgressDialog(this);
         images = new ArrayList<>();
         mAdapter = new GalleryAdapter(getApplicationContext(), images, this);
 
@@ -87,7 +98,7 @@ public class ImageGridActivity extends AppCompatActivity implements GalleryAdapt
     }
 
     private void fetchImages() {
-
+        pDialog = new ProgressDialog(this);
         pDialog.setMessage("Downloading json...");
         pDialog.show();
 
@@ -96,7 +107,8 @@ public class ImageGridActivity extends AppCompatActivity implements GalleryAdapt
                     @Override
                     public void onResponse(JSONArray response) {
                         pDialog.hide();
-
+                        pDialog.dismiss();
+                        pDialog = null;
                         images.clear();
                         for (int i = 0; i < response.length(); i++) {
                             try {
@@ -123,7 +135,8 @@ public class ImageGridActivity extends AppCompatActivity implements GalleryAdapt
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("SRD", "Error: " + error.getMessage());
-                pDialog.hide();
+                pDialog.dismiss();
+                pDialog = null;
             }
         });
 
@@ -144,7 +157,7 @@ public class ImageGridActivity extends AppCompatActivity implements GalleryAdapt
                 shareImageView,
                 ViewCompat.getTransitionName(shareImageView));*/
         Pair<View, String> mPair1 = new Pair<View, String>(shareImageView, ViewCompat.getTransitionName(shareImageView));
-        Pair<View, String> mPair2 = new Pair<View, String>(shareImageView, ViewCompat.getTransitionName(shareImageView));
+        Pair<View, String> mPair2 = new Pair<View, String>(shareTextView, ViewCompat.getTransitionName(shareTextView));
 
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, mPair1, mPair2);
 
