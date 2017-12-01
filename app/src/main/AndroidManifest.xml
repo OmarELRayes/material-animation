@@ -17,11 +17,6 @@
         <activity
             android:name=".activity.ImageGridActivity"
             android:label="Image Grid">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".activity.DetailActivity"
@@ -29,6 +24,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.ImageGridActivity" />
+        </activity>
+        <activity
+            android:name=".activity.SignedInActivity"
+            android:label="@string/title_activity_signed_in">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
