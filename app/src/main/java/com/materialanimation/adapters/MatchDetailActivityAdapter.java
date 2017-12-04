@@ -42,7 +42,7 @@ public class MatchDetailActivityAdapter extends RecyclerView.Adapter<MatchDetail
     private ItemClickListener onItemClickListener;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public ImageView thumbnail;
+        public ImageView thumbnail, profile;
         public TextView etxtURL;
         public PieChart chart1;
 
@@ -51,6 +51,7 @@ public class MatchDetailActivityAdapter extends RecyclerView.Adapter<MatchDetail
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             etxtURL = (TextView) view.findViewById(R.id.etxtURL);
             chart1 = (PieChart) view.findViewById(R.id.chart1);
+            profile = (ImageView) view.findViewById(R.id.profile);
         }
     }
 
@@ -77,6 +78,11 @@ public class MatchDetailActivityAdapter extends RecyclerView.Adapter<MatchDetail
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.thumbnail);
+        Glide.with(mContext).load(image.getMedium())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .dontAnimate()
+                .into(holder.profile);
+
         ViewCompat.setTransitionName(holder.thumbnail, image.getName());
         ViewCompat.setTransitionName(holder.etxtURL, image.getName()+image.getTimestamp());
         holder.etxtURL.setText(image.getName());
@@ -94,7 +100,7 @@ public class MatchDetailActivityAdapter extends RecyclerView.Adapter<MatchDetail
         //holder.chart1.setTransparentCircleColor(Color.WHITE);
         holder.chart1.setTransparentCircleAlpha(0);
 
-        holder.chart1.setHoleRadius(40f);
+        holder.chart1.setHoleRadius(80f);
         holder.chart1.setTransparentCircleRadius(81f);
         //mChart.setCenterText(generateCenterSpannableText());
         //mChart.setDrawCenterText(true);
@@ -125,6 +131,8 @@ public class MatchDetailActivityAdapter extends RecyclerView.Adapter<MatchDetail
         l.setXEntrySpace(7f);
         l.setYEntrySpace(0f);
         l.setYOffset(0f);
+
+        holder.chart1.getLegend().setEnabled(false);
 
         // entry label styling
         holder.chart1.setEntryLabelColor(Color.WHITE);
@@ -209,7 +217,7 @@ public class MatchDetailActivityAdapter extends RecyclerView.Adapter<MatchDetail
 
         }
 
-        PieDataSet dataSet = new PieDataSet(entries, "Election Results");
+        PieDataSet dataSet = new PieDataSet(entries, "");
 
         dataSet.setDrawIcons(false);
 
@@ -220,14 +228,13 @@ public class MatchDetailActivityAdapter extends RecyclerView.Adapter<MatchDetail
         // add a lot of colors
 
         ArrayList<Integer> colors = new ArrayList<Integer>();
-
-        for (int c : ColorTemplate.VORDIPLOM_COLORS)
+        /*for (int c : ColorTemplate.VORDIPLOM_COLORS)
             colors.add(c);
 
         for (int c : ColorTemplate.JOYFUL_COLORS)
-            colors.add(c);
+            colors.add(c);*/
 
-        /*for (int c : ColorTemplate.COLORFUL_COLORS)
+        for (int c : ColorTemplate.COLORFUL_COLORS)
             colors.add(c);
 
         for (int c : ColorTemplate.LIBERTY_COLORS)
@@ -236,7 +243,7 @@ public class MatchDetailActivityAdapter extends RecyclerView.Adapter<MatchDetail
         for (int c : ColorTemplate.PASTEL_COLORS)
             colors.add(c);
 
-        colors.add(ColorTemplate.getHoloBlue());*/
+        colors.add(ColorTemplate.getHoloBlue());
 
         dataSet.setColors(colors);
         //dataSet.setSelectionShift(0f);

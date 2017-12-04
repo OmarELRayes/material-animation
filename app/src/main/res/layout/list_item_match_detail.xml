@@ -25,33 +25,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:padding="10dp"
+        android:padding="5dp"
         android:layout_alignParentBottom="true"
         android:textColor="@android:color/white"
         android:background="@drawable/rounded_corner_image"
         android:layout_marginTop="16dp"
         android:text="8 December"
         android:textSize="12sp"/>
-    <android.support.v7.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+    <View
+        android:layout_width="40dp"
+        android:layout_height="50dp"
         android:layout_gravity="right"
-        card_view:srcCompat="@drawable/ic_location_on_black_24dp"
-        android:tint="@android:color/white"/>
+        android:background="@color/black_green"
+        android:layout_marginRight="16dp"/>
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/profile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
+        android:layout_gravity="right" />
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/chart1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:layout_margin="16dp"/>
     <TextView
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:textStyle="bold"
+        android:layout_gravity="bottom|center_horizontal"
         android:textColor="@android:color/white"
         android:layout_margin="16dp"
-        android:text="445 Mount Eden Road, Mount Eden, Auckland" />
+        android:text="Players going" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,5 +65,6 @@
         android:layout_margin="16dp"
         android:text="7*7"
         android:background="@color/colorPrimary"
-        android:padding="8dp"/>
+        android:padding="8dp"
+        android:visibility="gone"/>
 </android.support.v7.widget.CardView>
