@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.materialanimation.R;
 import com.materialanimation.fragment.DemosFragment;
+import com.materialanimation.fragment.MatchesFragment;
 import com.materialanimation.util.ActivityUtils;
 
 
@@ -40,9 +41,11 @@ public class SignedInActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
+                    setDemosFragment();
                     return true;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                    mTextMessage.setText(R.string.title_matches);
+                    setMatchFragment();
                     return true;
                 case R.id.navigation_notifications:
                     mTextMessage.setText(R.string.title_notifications);
@@ -92,6 +95,17 @@ public class SignedInActivity extends AppCompatActivity {
             demosFragment = DemosFragment.newInstance();
             ActivityUtils.addFragmentToActivity(
                     getSupportFragmentManager(), demosFragment, "DemosFragment", R.id.content);
+        }
+    }
+
+    private void setMatchFragment() {
+        MatchesFragment demosFragment =
+                (MatchesFragment) getSupportFragmentManager().findFragmentByTag("MatchesFragment");
+        if (demosFragment == null) {
+            // Create the fragment
+            demosFragment = MatchesFragment.newInstance();
+            ActivityUtils.addFragmentToActivity(
+                    getSupportFragmentManager(), demosFragment, "MatchesFragment", R.id.content);
         }
     }
 

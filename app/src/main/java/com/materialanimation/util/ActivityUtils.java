@@ -34,7 +34,7 @@ public class ActivityUtils {
     public static void addFragmentToActivity (@NonNull FragmentManager fragmentManager,
                                               @NonNull Fragment fragment, String frameId, int containerId) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(containerId, fragment, frameId);
+        transaction.replace(containerId, fragment, frameId);
         transaction.commit();
     }
 
