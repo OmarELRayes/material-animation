@@ -30,7 +30,8 @@
         android:textColor="@android:color/white"
         android:background="@drawable/rounded_corner_image"
         android:layout_marginTop="16dp"
-        android:text="8 December"/>
+        android:text="8 December"
+        android:textSize="12sp"/>
     <android.support.v7.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

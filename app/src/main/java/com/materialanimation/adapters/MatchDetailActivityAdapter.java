@@ -86,7 +86,7 @@ public class MatchDetailActivityAdapter extends RecyclerView.Adapter<MatchDetail
                 onItemClickListener.onItemClick(holder.getAdapterPosition(), image, holder.thumbnail, holder.etxtURL);
             }
         });
-        holder.chart1.setUsePercentValues(true);
+        holder.chart1.setUsePercentValues(false);
         holder.chart1.getDescription().setEnabled(false);
         holder.chart1.setExtraOffsets(5, 10, 5, 5);
         holder.chart1.setDragDecelerationFrictionCoef(0.95f);
@@ -94,9 +94,8 @@ public class MatchDetailActivityAdapter extends RecyclerView.Adapter<MatchDetail
         //holder.chart1.setTransparentCircleColor(Color.WHITE);
         holder.chart1.setTransparentCircleAlpha(0);
 
-        holder.chart1.setHoleRadius(80f);
+        holder.chart1.setHoleRadius(40f);
         holder.chart1.setTransparentCircleRadius(81f);
-
         //mChart.setCenterText(generateCenterSpannableText());
         //mChart.setDrawCenterText(true);
 
@@ -200,18 +199,21 @@ public class MatchDetailActivityAdapter extends RecyclerView.Adapter<MatchDetail
 
         // NOTE: The order of the entries when being added to the entries array determines their position around the center of
         // the chart.
+        entries.add(new PieEntry(40));
+        entries.add(new PieEntry(60));
         for (int i = 0; i < count ; i++) {
             /*entries.add(new PieEntry((float) ((Math.random() * mult) + mult / 5),
                     mParties[i % mParties.length],
                     getResources().getDrawable(R.drawable.star)));*/
-            entries.add(new PieEntry((float) ((Math.random() * 60) + 40), "Quarter " + (i+1)));
+            //entries.add(new PieEntry((float) ((Math.random() * 60) + 40)));
+
         }
 
         PieDataSet dataSet = new PieDataSet(entries, "Election Results");
 
         dataSet.setDrawIcons(false);
 
-        dataSet.setSliceSpace(3f);
+        //dataSet.setSliceSpace(3f);
         dataSet.setIconsOffset(new MPPointF(0, 40));
         dataSet.setSelectionShift(5f);
 
