@@ -3,6 +3,7 @@ package com.materialanimation.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
@@ -54,6 +55,9 @@ public class MatchDetailActivityAdapter extends RecyclerView.Adapter<MatchDetail
             etxtURL = (TextView) view.findViewById(R.id.etxtURL);
             chart1 = (PieChart) view.findViewById(R.id.chart1);
             profileRound = (RoundedImageView) view.findViewById(R.id.profileRound);
+            profileRound.setBorderOverlay(true);
+            profileRound.setBorderWidth(5);
+            profileRound.setBorderColor(ContextCompat.getColor(mContext,android.R.color.white));
         }
     }
 
