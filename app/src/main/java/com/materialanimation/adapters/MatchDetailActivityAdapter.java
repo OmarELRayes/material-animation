@@ -28,6 +28,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.materialanimation.R;
 import com.materialanimation.model.Image;
+import com.materialanimation.util.RoundedImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,16 +43,17 @@ public class MatchDetailActivityAdapter extends RecyclerView.Adapter<MatchDetail
     private ItemClickListener onItemClickListener;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public ImageView thumbnail, profile;
+        public ImageView thumbnail;
         public TextView etxtURL;
         public PieChart chart1;
+        public RoundedImageView profileRound;
 
         public MyViewHolder(View view) {
             super(view);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             etxtURL = (TextView) view.findViewById(R.id.etxtURL);
             chart1 = (PieChart) view.findViewById(R.id.chart1);
-            profile = (ImageView) view.findViewById(R.id.profile);
+            profileRound = (RoundedImageView) view.findViewById(R.id.profileRound);
         }
     }
 
@@ -78,10 +80,10 @@ public class MatchDetailActivityAdapter extends RecyclerView.Adapter<MatchDetail
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.thumbnail);
-        Glide.with(mContext).load(image.getMedium())
+        Glide.with(mContext).load("https://secure.gravatar.com/avatar/9ec01fda27e0d6a34edd625046d0789c?s=320")
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .dontAnimate()
-                .into(holder.profile);
+                .into(holder.profileRound);
 
         ViewCompat.setTransitionName(holder.thumbnail, image.getName());
         ViewCompat.setTransitionName(holder.etxtURL, image.getName()+image.getTimestamp());

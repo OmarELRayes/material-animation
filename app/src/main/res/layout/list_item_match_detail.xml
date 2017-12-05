@@ -33,15 +33,15 @@
         android:text="8 December"
         android:textSize="12sp"/>
     <View
-        android:layout_width="40dp"
+        android:layout_width="30dp"
         android:layout_height="50dp"
         android:layout_gravity="right"
         android:background="@color/black_green"
-        android:layout_marginRight="16dp"/>
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/profile"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_marginRight="27dp"/>
+    <com.materialanimation.util.RoundedImageView
+        android:id="@+id/profileRound"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_margin="16dp"
         android:layout_gravity="right" />
     <com.github.mikephil.charting.charts.PieChart

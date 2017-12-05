@@ -229,7 +229,7 @@ public class DetailActivity extends AppCompatActivity implements DetailActivityA
 
     @Override
     public void onItemClick(int pos, Image imageItem, ImageView shareImageView, TextView shareTextView) {
-        Intent intent = new Intent(this, DetailActivity.class);
+        Intent intent = new Intent(this, AdvanceDetailsActivity.class);
         intent.putExtra(EXTRA_ANIMAL_ITEM, imageItem.getLarge());
         intent.putExtra(EXTRA__ITEM_NAME, imageItem.getName());
         intent.putExtra(EXTRA_ANIMAL_IMAGE_TRANSITION_NAME, ViewCompat.getTransitionName(shareImageView));
