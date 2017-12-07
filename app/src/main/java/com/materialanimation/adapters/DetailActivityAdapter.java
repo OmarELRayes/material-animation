@@ -2,6 +2,7 @@ package com.materialanimation.adapters;
 
 import android.content.Context;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,11 +29,14 @@ public class DetailActivityAdapter extends RecyclerView.Adapter<DetailActivityAd
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView thumbnail;
         public TextView etxtURL;
+        public CardView card_view;
 
         public MyViewHolder(View view) {
             super(view);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             etxtURL = (TextView) view.findViewById(R.id.etxtURL);
+            card_view = (CardView) view.findViewById(R.id.card_view);
+            card_view.setPreventCornerOverlap(false);
         }
     }
 
